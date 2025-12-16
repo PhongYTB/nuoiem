@@ -1,0 +1,20 @@
+[,
+  {
+    "ma": "NUOIEM002",
+    "hoten": "CHUỘT",
+    "sinhnam": 2010,
+    "dantoc": "Tay",
+    "trangthai": "Dang can ho tro",
+    "song_o": "TPHCM",
+    "anh": "https://via.placeholder.com/300x400?text=Be+2"
+  },
+  {
+    "ma": "NUOIEM003",
+    "hoten": "namkiki",
+    "sinhnam": 3667,
+    "dantoc": "Hmong",
+    "trangthai": "chưa ai tài trợ",
+    "song_o": "TPHCM",
+    "anh": "https://via.placeholder.com/300x400?text=Be+3"
+  }
+]
