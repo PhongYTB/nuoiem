@@ -1,20 +1,29 @@
 [
   {
-    "ma": "SHISHA36",
+    "ma": "SHISA36",
     "hoten": "NAMKIKI",
-    "sinhnam": 3667,
-    "dantoc": "SKBIDI",
-    "trangthai": "Dang can BU LON",
-    "song_o": "Tp hcm",
-    "anh": "https://i.imgur.com/a6jgV2N.jpeg"
+    "sinhnam": "3667",
+    "dantoc": "TÀY",
+    "trangthai": "Khó khăn",
+    "song_o": "TP HCM",
+    "anh": "https://imgur.com/a6jgV2N"
   },
   {
-    "ma": "NUOIEM002",
-    "hoten": "Tran Thi Hoa",
-    "sinhnam": 2014,
-    "dantoc": "Tay",
-    "trangthai": "Da duoc ho tro",
-    "song_o": "Ha Giang",
-    "anh": "https://via.placeholder.com/400x500?text=Be+2"
+    "ma": "Nuoiem002",
+    "hoten": "Tran Thi B",
+    "sinhnam": "2012",
+    "dantoc": "Tày",
+    "trangthai": "Khó khăn",
+    "song_o": "Hải Phòng",
+    "anh": "https://i.imgur.com/2.jpg"
+  },
+  {
+    "ma": "Nuoiem003",
+    "hoten": "Le Van C",
+    "sinhnam": "2011",
+    "dantoc": "Dao",
+    "trangthai": "Khó khăn",
+    "song_o": "Quảng Ninh",
+    "anh": "https://i.imgur.com/3.jpg"
   }
 ]
