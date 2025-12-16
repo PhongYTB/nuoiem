@@ -9,116 +9,193 @@
 body {
   margin:0;
   font-family:Arial;
-  background:#f6f7fb;
+  background:#f2f3f7;
 }
 
-#menu {
+header {
   position:sticky;
   top:0;
-  background:linear-gradient(90deg,#4f46e5,#6366f1);
-  color:white;
+  z-index:10;
+  background:#ffffff;
+  box-shadow:0 2px 10px rgba(0,0,0,0.08);
+}
+
+.menu {
+  max-width:700px;
+  margin:0 auto;
   padding:14px 16px;
   display:flex;
   justify-content:space-between;
   align-items:center;
 }
 
-#menu b {
+.logo {
   font-size:18px;
+  font-weight:bold;
 }
 
-#box {
-  max-width:600px;
+.menu button {
+  background:#4f46e5;
+  color:white;
+  border:none;
+  padding:8px 14px;
+  border-radius:20px;
+  font-size:14px;
+}
+
+.container {
+  max-width:700px;
   margin:20px auto;
+  padding:16px;
+}
+
+.card {
   background:white;
   padding:18px;
-  border-radius:12px;
+  border-radius:14px;
+  box-shadow:0 6px 16px rgba(0,0,0,0.08);
 }
 
 input {
   width:100%;
-  padding:12px;
+  padding:14px;
   font-size:16px;
+  border-radius:10px;
   border:1px solid #ccc;
-  border-radius:8px;
 }
 
-button {
+.mainbtn {
   width:100%;
-  padding:12px;
-  margin-top:12px;
-  font-size:16px;
+  margin-top:14px;
+  padding:14px;
   border:none;
-  border-radius:8px;
+  border-radius:10px;
   background:#4f46e5;
   color:white;
+  font-size:16px;
 }
 
 #ketqua {
   margin-top:20px;
 }
 
-#thongbao {
+.notice {
   text-align:center;
   color:#e11d48;
 }
 
-#card img {
+.info img {
   width:100%;
+  border-radius:12px;
+  margin-bottom:10px;
+}
+
+.info p {
+  margin:6px 0;
+}
+
+.popup {
+  display:none;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.5);
+}
+
+.popupbox {
+  background:white;
+  max-width:360px;
+  margin:140px auto;
+  padding:20px;
+  border-radius:14px;
+  text-align:center;
+}
+
+.popupbox button {
+  margin-top:12px;
+  width:100%;
+  padding:12px;
+  border:none;
   border-radius:10px;
+  background:#4f46e5;
+  color:white;
 }
 </style>
 </head>
 
 <body>
 
-<div id="menu">
-  <b>Nuôi Em</b>
+<header>
+  <div class="menu">
+    <div class="logo">Nuôi Em</div>
+    <button onclick="moPopup()">Ủng hộ</button>
+  </div>
+</header>
+
+<div class="container">
+  <div class="card">
+    <h3>Tra cứu mã nuôi em</h3>
+    <input id="ma" placeholder="Nhập mã">
+    <button class="mainbtn" onclick="traCuu()">Tra cứu</button>
+    <div id="ketqua"></div>
+  </div>
 </div>
 
-<div id="box">
-  <h3>Tra cứu mã nuôi em</h3>
-  <input id="ma" placeholder="Nhập mã nuôi em">
-  <button onclick="traCuu()">Tra cứu</button>
-  <div id="ketqua"></div>
+<div id="popup" class="popup">
+  <div class="popupbox">
+    <h3>Chuyển tiền nuôi em</h3>
+    <p>Tài khoản gachthefast</p>
+    <p>Hoangnamphong</p>
+    <p>Số tiền tùy tâm ♥️</p>
+    <button onclick="dongPopup()">Đóng</button>
+  </div>
 </div>
 
 <script>
 async function traCuu() {
-  const maNhap = document.getElementById("ma").value.trim().toLowerCase()
-  const ketqua = document.getElementById("ketqua")
+  const ma = document.getElementById("ma").value.trim().toLowerCase()
+  const kq = document.getElementById("ketqua")
 
-  if (maNhap === "") {
-    ketqua.innerHTML = "<div id='thongbao'>Vui lòng nhập mã</div>"
+  if (ma === "") {
+    kq.innerHTML = "<div class='notice'>Vui lòng nhập mã</div>"
     return
   }
 
   try {
     const res = await fetch("thongtin.json")
     const data = await res.json()
-
-    const be = data.find(item => item.ma.toLowerCase() === maNhap)
+    const be = data.find(x => x.ma.toLowerCase() === ma)
 
     if (!be) {
-      ketqua.innerHTML = "<div id='thongbao'>Mã không tồn tại</div>"
+      kq.innerHTML = "<div class='notice'>Mã không tồn tại</div>"
       return
     }
 
-    ketqua.innerHTML =
-      "<div id='card'>" +
-      "<img src='" + be.anh + "'>" +
-      "<p><b>Mã</b> " + be.ma + "</p>" +
-      "<p><b>Họ tên</b> " + be.hoten + "</p>" +
-      "<p><b>Sinh năm</b> " + be.sinhnam + "</p>" +
-      "<p><b>Dân tộc</b> " + be.dantoc + "</p>" +
-      "<p><b>Trạng thái</b> " + be.trangthai + "</p>" +
-      "<p><b>Sống ở</b> " + be.song_o + "</p>" +
-      "<button onclick='alert(\"Tài khoản gachthefast\\nHoangnamphong\\nSố tiền tùy tâm ♥️\")'>Chuyển tiền nuôi em</button>" +
+    kq.innerHTML =
+      "<div class='info'>" +
+      "<img src='"+be.anh+"'>" +
+      "<p><b>Mã</b> "+be.ma+"</p>" +
+      "<p><b>Họ tên</b> "+be.hoten+"</p>" +
+      "<p><b>Sinh năm</b> "+be.sinhnam+"</p>" +
+      "<p><b>Dân tộc</b> "+be.dantoc+"</p>" +
+      "<p><b>Trạng thái</b> "+be.trangthai+"</p>" +
+      "<p><b>Sống ở</b> "+be.song_o+"</p>" +
+      "<button class='mainbtn' onclick='moPopup()'>Chuyển tiền nuôi em</button>" +
       "</div>"
 
-  } catch (e) {
-    ketqua.innerHTML = "<div id='thongbao'>Không đọc được dữ liệu</div>"
+  } catch {
+    kq.innerHTML = "<div class='notice'>Không đọc được dữ liệu</div>"
   }
+}
+
+function moPopup() {
+  document.getElementById("popup").style.display = "block"
+}
+
+function dongPopup() {
+  document.getElementById("popup").style.display = "none"
 }
 </script>
 
